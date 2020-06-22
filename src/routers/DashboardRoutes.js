@@ -52,6 +52,7 @@ function handleBackForwardButton() {
     else if (state && !specificState && historyLength === state) {
       const direction = Math.sign(state - historyLength);
       console.log("Reloading page shoudl be (0) : " + direction);
+      sessionStorage.setItem("historyLength", String(historyLength));
       debugger;
       //Reloading page shoudl be (0)
     }
