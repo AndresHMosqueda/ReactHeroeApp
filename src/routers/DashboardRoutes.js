@@ -19,12 +19,14 @@ function handleBackForwardButton() {
     // let { state } = await window.history.state; // Absolute position in stack
     let state = window.history.state;// Absolute position in stack
     let specificState = state.state
-    console.log('specificState', specificState)
-    console.log('STATEEEE', state)
-    console.log('window.history.state', window.history.state);
-    console.log('window.history.length', window.history.length);
+    // console.log('specificState', specificState)
+    // console.log('STATEEEE', state)
+    // console.log('window.history.state', window.history.state);
+    // console.log('window.history.length', window.history.length);
     let position;
-    if ((!state && !specificState) || (!specificState && !state.state && historyLength && !state) || (!state && !state.state)) {
+    debugger;
+    // if ((!state && !specificState) || (!specificState && !state.state && historyLength && !state && !position)) {
+    if ((!state.state && !specificState & historyLength === 0) || (!state.state && !specificState & window.history.length > state.state)) {
       // Meaning a new entry on the stack
       position = historyLength + 1; // Top of stack
       debugger;
@@ -39,8 +41,9 @@ function handleBackForwardButton() {
       debugger;
       // forward should be (1)
     } 
-    else if ((specificState === null || specificState === undefined ) && window.history.length > state) {
-      const direction = Math.sign((state - historyLength));
+    else if ((specificState === null || specificState === undefined && !position) && window.history.length > state) {
+      position = historyLength - 1; // Top of stack
+      const direction = Math.sign((position - historyLength));
       console.log("Travel direction is backward shoudl be (-1) :" + direction);
       debugger;
       //One of backward (-1)
