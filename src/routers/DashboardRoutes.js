@@ -26,7 +26,7 @@ function handleBackForwardButton() {
     let position;
     debugger;
     // if ((!state && !specificState) || (!specificState && !state.state && historyLength && !state && !position)) {
-    if ((!state.state && !specificState & historyLength === 0) || (!state.state && !specificState & window.history.length > state.state)) {
+    if ((!state.state && !specificState & historyLength === 0) || (!state.state && !specificState & window.history.length > state.state) || (!state.state && !specificState & window.history.length > historyLength) ) {
       // Meaning a new entry on the stack
       position = historyLength + 1; // Top of stack
       debugger;
@@ -41,10 +41,11 @@ function handleBackForwardButton() {
       debugger;
       // forward should be (1)
     } 
-    else if ((specificState === null || specificState === undefined && !position) && window.history.length > state) {
+    else if ((specificState === null || specificState === undefined && !position) && historyLength > state) {
       position = historyLength - 1; // Top of stack
       const direction = Math.sign((position - historyLength));
       console.log("Travel direction is backward shoudl be (-1) :" + direction);
+      sessionStorage.setItem("historyLength", String(window.history.length -1));
       debugger;
       //One of backward (-1)
     } 
