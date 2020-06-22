@@ -26,7 +26,7 @@ function handleBackForwardButton() {
     let position;
     debugger;
     // if ((!state && !specificState) || (!specificState && !state.state && historyLength && !state && !position)) {
-    if ((!state.state && !specificState & historyLength === 0) || (!state.state && !specificState & window.history.length > state.state) || (!state.state && !specificState & window.history.length > historyLength) ) {
+    if ((!state.state && !specificState & historyLength === 0) || ((!state || !state.state) && !specificState & window.history.length > (!state || state.state)) || (!state.state && !specificState & window.history.length > historyLength) ) {
       // Meaning a new entry on the stack
       position = historyLength + 1; // Top of stack
       debugger;
@@ -52,7 +52,7 @@ function handleBackForwardButton() {
     else if (state && !specificState && historyLength === state) {
       const direction = Math.sign(state - historyLength);
       console.log("Reloading page shoudl be (0) : " + direction);
-      sessionStorage.setItem("historyLength", String(historyLength));
+    //   sessionStorage.setItem("historyLength", String(historyLength));
       debugger;
       //Reloading page shoudl be (0)
     }
